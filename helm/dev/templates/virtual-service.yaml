@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Values.appName }}-vs
+spec:
+  gateways:
+    - istio-system/argo-rollouts-gateway
+  hosts:
+    - {{ .Values.host }}
+  http:
+    - route:
+        - destination:
+            host: {{ .Values.appName }}
+            port:
+              number: 80

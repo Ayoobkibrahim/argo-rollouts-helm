@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  replicas: {{ .Values.replicas }}
+  strategy:
+    blueGreen:
+      activeService: {{ .Values.appName }}
+      previewService: {{ .Values.appName }}-preview
+      autoPromotionEnabled: false
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: ui-app
+          image: {{ .Values.image.new }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

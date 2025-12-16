@@ -1,0 +1,8 @@
+appName: ui-app
+replicas: 2
+
+image:
+  old: ayoobki/ui-app:old
+  new: ayoobki/ui-app:old
+
+host: bluegreen-dev.local
