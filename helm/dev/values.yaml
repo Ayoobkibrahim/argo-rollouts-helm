@@ -3,6 +3,6 @@ replicas: 2
 
 image:
   old: ayoobki/ui-app:old
-  new: ayoobki/ui-app:new
+  new: ayoobki/ui-app:old
 
 host: bluegreen-dev.local
